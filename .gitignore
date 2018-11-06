@@ -7,3 +7,4 @@ examples/**/node_modules
 .idea
 *.log
 .vscode
+.env
