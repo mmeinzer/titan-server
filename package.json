@@ -1,0 +1,22 @@
+{
+  "name": "titan-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mmeinzer/titan-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmeinzer/titan-server/issues"
+  },
+  "homepage": "https://github.com/mmeinzer/titan-server#readme",
+  "dependencies": {
+    "graphql-yoga": "^1.16.7"
+  }
+}
