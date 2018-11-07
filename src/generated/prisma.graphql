@@ -1,5 +1,9 @@
 # source: https://us1.prisma.sh/titan/titan-server/dev
-# timestamp: Mon Nov 05 2018 19:25:10 GMT-0600 (CST)
+# timestamp: Tue Nov 06 2018 21:27:38 GMT-0600 (CST)
+
+type AggregateDeal {
+  count: Int!
+}
 
 type AggregateProperty {
   count: Int!
@@ -14,6 +18,337 @@ type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
+type Deal implements Node {
+  id: ID!
+  author: User!
+  title: String!
+  property: Property!
+  purchasePrice: Int
+  afterRepairValue: Int
+  monthlyRent: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type DealConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DealEdge]!
+  aggregate: AggregateDeal!
+}
+
+input DealCreateInput {
+  title: String!
+  purchasePrice: Int
+  afterRepairValue: Int
+  monthlyRent: Int
+  author: UserCreateOneInput!
+  property: PropertyCreateOneInput!
+}
+
+"""An edge in a connection."""
+type DealEdge {
+  """The item at the end of the edge."""
+  node: Deal!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DealOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  purchasePrice_ASC
+  purchasePrice_DESC
+  afterRepairValue_ASC
+  afterRepairValue_DESC
+  monthlyRent_ASC
+  monthlyRent_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type DealPreviousValues {
+  id: ID!
+  title: String!
+  purchasePrice: Int
+  afterRepairValue: Int
+  monthlyRent: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DealSubscriptionPayload {
+  mutation: MutationType!
+  node: Deal
+  updatedFields: [String!]
+  previousValues: DealPreviousValues
+}
+
+input DealSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DealSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DealSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DealSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DealWhereInput
+}
+
+input DealUpdateInput {
+  title: String
+  purchasePrice: Int
+  afterRepairValue: Int
+  monthlyRent: Int
+  author: UserUpdateOneRequiredInput
+  property: PropertyUpdateOneRequiredInput
+}
+
+input DealUpdateManyMutationInput {
+  title: String
+  purchasePrice: Int
+  afterRepairValue: Int
+  monthlyRent: Int
+}
+
+input DealWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DealWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DealWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DealWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  purchasePrice: Int
+
+  """All values that are not equal to given value."""
+  purchasePrice_not: Int
+
+  """All values that are contained in given list."""
+  purchasePrice_in: [Int!]
+
+  """All values that are not contained in given list."""
+  purchasePrice_not_in: [Int!]
+
+  """All values less than the given value."""
+  purchasePrice_lt: Int
+
+  """All values less than or equal the given value."""
+  purchasePrice_lte: Int
+
+  """All values greater than the given value."""
+  purchasePrice_gt: Int
+
+  """All values greater than or equal the given value."""
+  purchasePrice_gte: Int
+  afterRepairValue: Int
+
+  """All values that are not equal to given value."""
+  afterRepairValue_not: Int
+
+  """All values that are contained in given list."""
+  afterRepairValue_in: [Int!]
+
+  """All values that are not contained in given list."""
+  afterRepairValue_not_in: [Int!]
+
+  """All values less than the given value."""
+  afterRepairValue_lt: Int
+
+  """All values less than or equal the given value."""
+  afterRepairValue_lte: Int
+
+  """All values greater than the given value."""
+  afterRepairValue_gt: Int
+
+  """All values greater than or equal the given value."""
+  afterRepairValue_gte: Int
+  monthlyRent: Int
+
+  """All values that are not equal to given value."""
+  monthlyRent_not: Int
+
+  """All values that are contained in given list."""
+  monthlyRent_in: [Int!]
+
+  """All values that are not contained in given list."""
+  monthlyRent_not_in: [Int!]
+
+  """All values less than the given value."""
+  monthlyRent_lt: Int
+
+  """All values less than or equal the given value."""
+  monthlyRent_lte: Int
+
+  """All values greater than the given value."""
+  monthlyRent_gt: Int
+
+  """All values greater than or equal the given value."""
+  monthlyRent_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  author: UserWhereInput
+  property: PropertyWhereInput
+}
+
+input DealWhereUniqueInput {
+  id: ID
+}
+
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
 Long can represent values between -(2^63) and 2^63 - 1.
@@ -21,18 +356,24 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
+  createDeal(data: DealCreateInput!): Deal!
   createProperty(data: PropertyCreateInput!): Property!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  createUser(data: UserCreateInput!): User!
+  updateDeal(data: DealUpdateInput!, where: DealWhereUniqueInput!): Deal
   updateProperty(data: PropertyUpdateInput!, where: PropertyWhereUniqueInput!): Property
-  deleteUser(where: UserWhereUniqueInput!): User
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  deleteDeal(where: DealWhereUniqueInput!): Deal
   deleteProperty(where: PropertyWhereUniqueInput!): Property
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  upsertDeal(where: DealWhereUniqueInput!, create: DealCreateInput!, update: DealUpdateInput!): Deal!
   upsertProperty(where: PropertyWhereUniqueInput!, create: PropertyCreateInput!, update: PropertyUpdateInput!): Property!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  updateManyDeals(data: DealUpdateManyMutationInput!, where: DealWhereInput): BatchPayload!
   updateManyProperties(data: PropertyUpdateManyMutationInput!, where: PropertyWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  deleteManyDeals(where: DealWhereInput): BatchPayload!
   deleteManyProperties(where: PropertyWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -65,8 +406,14 @@ type PageInfo {
 type Property implements Node {
   id: ID!
   author: User!
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -80,8 +427,12 @@ type PropertyConnection {
 }
 
 input PropertyCreateInput {
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
   author: UserCreateOneWithoutPropertiesInput!
 }
 
@@ -90,9 +441,18 @@ input PropertyCreateManyWithoutAuthorInput {
   connect: [PropertyWhereUniqueInput!]
 }
 
+input PropertyCreateOneInput {
+  create: PropertyCreateInput
+  connect: PropertyWhereUniqueInput
+}
+
 input PropertyCreateWithoutAuthorInput {
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
 }
 
 """An edge in a connection."""
@@ -107,20 +467,34 @@ type PropertyEdge {
 enum PropertyOrderByInput {
   id_ASC
   id_DESC
+  streetAddress_ASC
+  streetAddress_DESC
+  city_ASC
+  city_DESC
+  state_ASC
+  state_DESC
   zipcode_ASC
   zipcode_DESC
-  price_ASC
-  price_DESC
-  updatedAt_ASC
-  updatedAt_DESC
+  bedrooms_ASC
+  bedrooms_DESC
+  bathrooms_ASC
+  bathrooms_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type PropertyPreviousValues {
   id: ID!
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type PropertySubscriptionPayload {
@@ -162,15 +536,33 @@ input PropertySubscriptionWhereInput {
   node: PropertyWhereInput
 }
 
-input PropertyUpdateInput {
+input PropertyUpdateDataInput {
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
+  author: UserUpdateOneRequiredWithoutPropertiesInput
+}
+
+input PropertyUpdateInput {
+  streetAddress: String
+  city: String
+  state: String
+  zipcode: Int
+  bedrooms: Int
+  bathrooms: Int
   author: UserUpdateOneRequiredWithoutPropertiesInput
 }
 
 input PropertyUpdateManyMutationInput {
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
 }
 
 input PropertyUpdateManyWithoutAuthorInput {
@@ -182,14 +574,30 @@ input PropertyUpdateManyWithoutAuthorInput {
   upsert: [PropertyUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
+input PropertyUpdateOneRequiredInput {
+  create: PropertyCreateInput
+  connect: PropertyWhereUniqueInput
+  update: PropertyUpdateDataInput
+  upsert: PropertyUpsertNestedInput
+}
+
 input PropertyUpdateWithoutAuthorDataInput {
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
 }
 
 input PropertyUpdateWithWhereUniqueWithoutAuthorInput {
   where: PropertyWhereUniqueInput!
   data: PropertyUpdateWithoutAuthorDataInput!
+}
+
+input PropertyUpsertNestedInput {
+  update: PropertyUpdateDataInput!
+  create: PropertyCreateInput!
 }
 
 input PropertyUpsertWithWhereUniqueWithoutAuthorInput {
@@ -247,6 +655,126 @@ input PropertyWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  streetAddress: String
+
+  """All values that are not equal to given value."""
+  streetAddress_not: String
+
+  """All values that are contained in given list."""
+  streetAddress_in: [String!]
+
+  """All values that are not contained in given list."""
+  streetAddress_not_in: [String!]
+
+  """All values less than the given value."""
+  streetAddress_lt: String
+
+  """All values less than or equal the given value."""
+  streetAddress_lte: String
+
+  """All values greater than the given value."""
+  streetAddress_gt: String
+
+  """All values greater than or equal the given value."""
+  streetAddress_gte: String
+
+  """All values containing the given string."""
+  streetAddress_contains: String
+
+  """All values not containing the given string."""
+  streetAddress_not_contains: String
+
+  """All values starting with the given string."""
+  streetAddress_starts_with: String
+
+  """All values not starting with the given string."""
+  streetAddress_not_starts_with: String
+
+  """All values ending with the given string."""
+  streetAddress_ends_with: String
+
+  """All values not ending with the given string."""
+  streetAddress_not_ends_with: String
+  city: String
+
+  """All values that are not equal to given value."""
+  city_not: String
+
+  """All values that are contained in given list."""
+  city_in: [String!]
+
+  """All values that are not contained in given list."""
+  city_not_in: [String!]
+
+  """All values less than the given value."""
+  city_lt: String
+
+  """All values less than or equal the given value."""
+  city_lte: String
+
+  """All values greater than the given value."""
+  city_gt: String
+
+  """All values greater than or equal the given value."""
+  city_gte: String
+
+  """All values containing the given string."""
+  city_contains: String
+
+  """All values not containing the given string."""
+  city_not_contains: String
+
+  """All values starting with the given string."""
+  city_starts_with: String
+
+  """All values not starting with the given string."""
+  city_not_starts_with: String
+
+  """All values ending with the given string."""
+  city_ends_with: String
+
+  """All values not ending with the given string."""
+  city_not_ends_with: String
+  state: String
+
+  """All values that are not equal to given value."""
+  state_not: String
+
+  """All values that are contained in given list."""
+  state_in: [String!]
+
+  """All values that are not contained in given list."""
+  state_not_in: [String!]
+
+  """All values less than the given value."""
+  state_lt: String
+
+  """All values less than or equal the given value."""
+  state_lte: String
+
+  """All values greater than the given value."""
+  state_gt: String
+
+  """All values greater than or equal the given value."""
+  state_gte: String
+
+  """All values containing the given string."""
+  state_contains: String
+
+  """All values not containing the given string."""
+  state_not_contains: String
+
+  """All values starting with the given string."""
+  state_starts_with: String
+
+  """All values not starting with the given string."""
+  state_not_starts_with: String
+
+  """All values ending with the given string."""
+  state_ends_with: String
+
+  """All values not ending with the given string."""
+  state_not_ends_with: String
   zipcode: Int
 
   """All values that are not equal to given value."""
@@ -269,28 +797,94 @@ input PropertyWhereInput {
 
   """All values greater than or equal the given value."""
   zipcode_gte: Int
-  price: Float
+  bedrooms: Int
 
   """All values that are not equal to given value."""
-  price_not: Float
+  bedrooms_not: Int
 
   """All values that are contained in given list."""
-  price_in: [Float!]
+  bedrooms_in: [Int!]
 
   """All values that are not contained in given list."""
-  price_not_in: [Float!]
+  bedrooms_not_in: [Int!]
 
   """All values less than the given value."""
-  price_lt: Float
+  bedrooms_lt: Int
 
   """All values less than or equal the given value."""
-  price_lte: Float
+  bedrooms_lte: Int
 
   """All values greater than the given value."""
-  price_gt: Float
+  bedrooms_gt: Int
 
   """All values greater than or equal the given value."""
-  price_gte: Float
+  bedrooms_gte: Int
+  bathrooms: Int
+
+  """All values that are not equal to given value."""
+  bathrooms_not: Int
+
+  """All values that are contained in given list."""
+  bathrooms_in: [Int!]
+
+  """All values that are not contained in given list."""
+  bathrooms_not_in: [Int!]
+
+  """All values less than the given value."""
+  bathrooms_lt: Int
+
+  """All values less than or equal the given value."""
+  bathrooms_lte: Int
+
+  """All values greater than the given value."""
+  bathrooms_gt: Int
+
+  """All values greater than or equal the given value."""
+  bathrooms_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   author: UserWhereInput
 }
 
@@ -299,12 +893,15 @@ input PropertyWhereUniqueInput {
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  deals(where: DealWhereInput, orderBy: DealOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Deal]!
   properties(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property]!
-  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  deal(where: DealWhereUniqueInput!): Deal
   property(where: PropertyWhereUniqueInput!): Property
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user(where: UserWhereUniqueInput!): User
+  dealsConnection(where: DealWhereInput, orderBy: DealOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DealConnection!
   propertiesConnection(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PropertyConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -314,14 +911,20 @@ type Query {
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  deal(where: DealSubscriptionWhereInput): DealSubscriptionPayload
   property(where: PropertySubscriptionWhereInput): PropertySubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User implements Node {
   id: ID!
   email: String!
+  password: String!
+  firstName: String
+  lastName: String
   properties(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -336,7 +939,15 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
+  password: String!
+  firstName: String
+  lastName: String
   properties: PropertyCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPropertiesInput {
@@ -346,6 +957,9 @@ input UserCreateOneWithoutPropertiesInput {
 
 input UserCreateWithoutPropertiesInput {
   email: String!
+  password: String!
+  firstName: String
+  lastName: String
 }
 
 """An edge in a connection."""
@@ -362,15 +976,26 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
-  updatedAt_ASC
-  updatedAt_DESC
+  password_ASC
+  password_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   email: String!
+  password: String!
+  firstName: String
+  lastName: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -412,13 +1037,34 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
+input UserUpdateDataInput {
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  properties: PropertyUpdateManyWithoutAuthorInput
+}
+
 input UserUpdateInput {
   email: String
+  password: String
+  firstName: String
+  lastName: String
   properties: PropertyUpdateManyWithoutAuthorInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
+  password: String
+  firstName: String
+  lastName: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
 }
 
 input UserUpdateOneRequiredWithoutPropertiesInput {
@@ -430,6 +1076,14 @@ input UserUpdateOneRequiredWithoutPropertiesInput {
 
 input UserUpdateWithoutPropertiesDataInput {
   email: String
+  password: String
+  firstName: String
+  lastName: String
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithoutPropertiesInput {
@@ -526,6 +1180,170 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  firstName: String
+
+  """All values that are not equal to given value."""
+  firstName_not: String
+
+  """All values that are contained in given list."""
+  firstName_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstName_not_in: [String!]
+
+  """All values less than the given value."""
+  firstName_lt: String
+
+  """All values less than or equal the given value."""
+  firstName_lte: String
+
+  """All values greater than the given value."""
+  firstName_gt: String
+
+  """All values greater than or equal the given value."""
+  firstName_gte: String
+
+  """All values containing the given string."""
+  firstName_contains: String
+
+  """All values not containing the given string."""
+  firstName_not_contains: String
+
+  """All values starting with the given string."""
+  firstName_starts_with: String
+
+  """All values not starting with the given string."""
+  firstName_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstName_ends_with: String
+
+  """All values not ending with the given string."""
+  firstName_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   properties_every: PropertyWhereInput
   properties_some: PropertyWhereInput
   properties_none: PropertyWhereInput

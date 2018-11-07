@@ -1,12 +1,35 @@
 type User {
   id: ID! @unique
   email: String! @unique
+  password: String!
+  firstName: String
+  lastName: String
   properties: [Property!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Property {
   id: ID! @unique
   author: User!
+  streetAddress: String
+  city: String
+  state: String
   zipcode: Int
-  price: Float
+  bedrooms: Int
+  bathrooms: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Deal {
+  id: ID! @unique
+  author: User!
+  title: String!
+  property: Property!
+  purchasePrice: Int
+  afterRepairValue: Int
+  monthlyRent: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
