@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/titan/titan-server/dev
-# timestamp: Tue Nov 06 2018 21:27:38 GMT-0600 (CST)
+# timestamp: Wed Nov 07 2018 18:42:02 GMT-0600 (CST)
 
 type AggregateDeal {
   count: Int!
@@ -22,9 +22,9 @@ scalar DateTime
 
 type Deal implements Node {
   id: ID!
-  author: User!
-  title: String!
-  property: Property!
+  author: User
+  title: String
+  property: Property
   purchasePrice: Int
   afterRepairValue: Int
   monthlyRent: Int
@@ -43,12 +43,12 @@ type DealConnection {
 }
 
 input DealCreateInput {
-  title: String!
+  title: String
   purchasePrice: Int
   afterRepairValue: Int
   monthlyRent: Int
-  author: UserCreateOneInput!
-  property: PropertyCreateOneInput!
+  author: UserCreateOneInput
+  property: PropertyCreateOneInput
 }
 
 """An edge in a connection."""
@@ -79,7 +79,7 @@ enum DealOrderByInput {
 
 type DealPreviousValues {
   id: ID!
-  title: String!
+  title: String
   purchasePrice: Int
   afterRepairValue: Int
   monthlyRent: Int
@@ -131,8 +131,8 @@ input DealUpdateInput {
   purchasePrice: Int
   afterRepairValue: Int
   monthlyRent: Int
-  author: UserUpdateOneRequiredInput
-  property: PropertyUpdateOneRequiredInput
+  author: UserUpdateOneInput
+  property: PropertyUpdateOneInput
 }
 
 input DealUpdateManyMutationInput {
@@ -405,7 +405,7 @@ type PageInfo {
 
 type Property implements Node {
   id: ID!
-  author: User!
+  author: User
   streetAddress: String
   city: String
   state: String
@@ -433,7 +433,7 @@ input PropertyCreateInput {
   zipcode: Int
   bedrooms: Int
   bathrooms: Int
-  author: UserCreateOneWithoutPropertiesInput!
+  author: UserCreateOneWithoutPropertiesInput
 }
 
 input PropertyCreateManyWithoutAuthorInput {
@@ -497,6 +497,287 @@ type PropertyPreviousValues {
   updatedAt: DateTime!
 }
 
+input PropertyScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PropertyScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PropertyScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PropertyScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  streetAddress: String
+
+  """All values that are not equal to given value."""
+  streetAddress_not: String
+
+  """All values that are contained in given list."""
+  streetAddress_in: [String!]
+
+  """All values that are not contained in given list."""
+  streetAddress_not_in: [String!]
+
+  """All values less than the given value."""
+  streetAddress_lt: String
+
+  """All values less than or equal the given value."""
+  streetAddress_lte: String
+
+  """All values greater than the given value."""
+  streetAddress_gt: String
+
+  """All values greater than or equal the given value."""
+  streetAddress_gte: String
+
+  """All values containing the given string."""
+  streetAddress_contains: String
+
+  """All values not containing the given string."""
+  streetAddress_not_contains: String
+
+  """All values starting with the given string."""
+  streetAddress_starts_with: String
+
+  """All values not starting with the given string."""
+  streetAddress_not_starts_with: String
+
+  """All values ending with the given string."""
+  streetAddress_ends_with: String
+
+  """All values not ending with the given string."""
+  streetAddress_not_ends_with: String
+  city: String
+
+  """All values that are not equal to given value."""
+  city_not: String
+
+  """All values that are contained in given list."""
+  city_in: [String!]
+
+  """All values that are not contained in given list."""
+  city_not_in: [String!]
+
+  """All values less than the given value."""
+  city_lt: String
+
+  """All values less than or equal the given value."""
+  city_lte: String
+
+  """All values greater than the given value."""
+  city_gt: String
+
+  """All values greater than or equal the given value."""
+  city_gte: String
+
+  """All values containing the given string."""
+  city_contains: String
+
+  """All values not containing the given string."""
+  city_not_contains: String
+
+  """All values starting with the given string."""
+  city_starts_with: String
+
+  """All values not starting with the given string."""
+  city_not_starts_with: String
+
+  """All values ending with the given string."""
+  city_ends_with: String
+
+  """All values not ending with the given string."""
+  city_not_ends_with: String
+  state: String
+
+  """All values that are not equal to given value."""
+  state_not: String
+
+  """All values that are contained in given list."""
+  state_in: [String!]
+
+  """All values that are not contained in given list."""
+  state_not_in: [String!]
+
+  """All values less than the given value."""
+  state_lt: String
+
+  """All values less than or equal the given value."""
+  state_lte: String
+
+  """All values greater than the given value."""
+  state_gt: String
+
+  """All values greater than or equal the given value."""
+  state_gte: String
+
+  """All values containing the given string."""
+  state_contains: String
+
+  """All values not containing the given string."""
+  state_not_contains: String
+
+  """All values starting with the given string."""
+  state_starts_with: String
+
+  """All values not starting with the given string."""
+  state_not_starts_with: String
+
+  """All values ending with the given string."""
+  state_ends_with: String
+
+  """All values not ending with the given string."""
+  state_not_ends_with: String
+  zipcode: Int
+
+  """All values that are not equal to given value."""
+  zipcode_not: Int
+
+  """All values that are contained in given list."""
+  zipcode_in: [Int!]
+
+  """All values that are not contained in given list."""
+  zipcode_not_in: [Int!]
+
+  """All values less than the given value."""
+  zipcode_lt: Int
+
+  """All values less than or equal the given value."""
+  zipcode_lte: Int
+
+  """All values greater than the given value."""
+  zipcode_gt: Int
+
+  """All values greater than or equal the given value."""
+  zipcode_gte: Int
+  bedrooms: Int
+
+  """All values that are not equal to given value."""
+  bedrooms_not: Int
+
+  """All values that are contained in given list."""
+  bedrooms_in: [Int!]
+
+  """All values that are not contained in given list."""
+  bedrooms_not_in: [Int!]
+
+  """All values less than the given value."""
+  bedrooms_lt: Int
+
+  """All values less than or equal the given value."""
+  bedrooms_lte: Int
+
+  """All values greater than the given value."""
+  bedrooms_gt: Int
+
+  """All values greater than or equal the given value."""
+  bedrooms_gte: Int
+  bathrooms: Int
+
+  """All values that are not equal to given value."""
+  bathrooms_not: Int
+
+  """All values that are contained in given list."""
+  bathrooms_in: [Int!]
+
+  """All values that are not contained in given list."""
+  bathrooms_not_in: [Int!]
+
+  """All values less than the given value."""
+  bathrooms_lt: Int
+
+  """All values less than or equal the given value."""
+  bathrooms_lte: Int
+
+  """All values greater than the given value."""
+  bathrooms_gt: Int
+
+  """All values greater than or equal the given value."""
+  bathrooms_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
 type PropertySubscriptionPayload {
   mutation: MutationType!
   node: Property
@@ -543,7 +824,7 @@ input PropertyUpdateDataInput {
   zipcode: Int
   bedrooms: Int
   bathrooms: Int
-  author: UserUpdateOneRequiredWithoutPropertiesInput
+  author: UserUpdateOneWithoutPropertiesInput
 }
 
 input PropertyUpdateInput {
@@ -553,7 +834,16 @@ input PropertyUpdateInput {
   zipcode: Int
   bedrooms: Int
   bathrooms: Int
-  author: UserUpdateOneRequiredWithoutPropertiesInput
+  author: UserUpdateOneWithoutPropertiesInput
+}
+
+input PropertyUpdateManyDataInput {
+  streetAddress: String
+  city: String
+  state: String
+  zipcode: Int
+  bedrooms: Int
+  bathrooms: Int
 }
 
 input PropertyUpdateManyMutationInput {
@@ -571,12 +861,21 @@ input PropertyUpdateManyWithoutAuthorInput {
   disconnect: [PropertyWhereUniqueInput!]
   delete: [PropertyWhereUniqueInput!]
   update: [PropertyUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PropertyUpdateManyWithWhereNestedInput!]
+  deleteMany: [PropertyScalarWhereInput!]
   upsert: [PropertyUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
-input PropertyUpdateOneRequiredInput {
+input PropertyUpdateManyWithWhereNestedInput {
+  where: PropertyScalarWhereInput!
+  data: PropertyUpdateManyDataInput!
+}
+
+input PropertyUpdateOneInput {
   create: PropertyCreateInput
   connect: PropertyWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: PropertyUpdateDataInput
   upsert: PropertyUpsertNestedInput
 }
@@ -919,7 +1218,7 @@ type Subscription {
 type User implements Node {
   id: ID!
   email: String!
-  password: String!
+  password: String
   firstName: String
   lastName: String
   properties(where: PropertyWhereInput, orderBy: PropertyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Property!]
@@ -939,7 +1238,7 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
-  password: String!
+  password: String
   firstName: String
   lastName: String
   properties: PropertyCreateManyWithoutAuthorInput
@@ -957,7 +1256,7 @@ input UserCreateOneWithoutPropertiesInput {
 
 input UserCreateWithoutPropertiesInput {
   email: String!
-  password: String!
+  password: String
   firstName: String
   lastName: String
 }
@@ -991,7 +1290,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
-  password: String!
+  password: String
   firstName: String
   lastName: String
   createdAt: DateTime!
@@ -1060,16 +1359,20 @@ input UserUpdateManyMutationInput {
   lastName: String
 }
 
-input UserUpdateOneRequiredInput {
+input UserUpdateOneInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: UserUpdateDataInput
   upsert: UserUpsertNestedInput
 }
 
-input UserUpdateOneRequiredWithoutPropertiesInput {
+input UserUpdateOneWithoutPropertiesInput {
   create: UserCreateWithoutPropertiesInput
   connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: UserUpdateWithoutPropertiesDataInput
   upsert: UserUpsertWithoutPropertiesInput
 }
