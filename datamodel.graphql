@@ -1,7 +1,7 @@
 type User {
   id: ID! @unique
   email: String! @unique
-  password: String!
+  password: String
   firstName: String
   lastName: String
   properties: [Property!]!
@@ -11,7 +11,7 @@ type User {
 
 type Property {
   id: ID! @unique
-  author: User!
+  author: User
   streetAddress: String
   city: String
   state: String
@@ -24,9 +24,9 @@ type Property {
 
 type Deal {
   id: ID! @unique
-  author: User!
-  title: String!
-  property: Property!
+  author: User
+  title: String
+  property: Property
   purchasePrice: Int
   afterRepairValue: Int
   monthlyRent: Int

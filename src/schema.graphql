@@ -6,7 +6,8 @@ type Mutation {
     password: String!
     firstName: String
     lastName: String
-  ): User!
+  ): User
+  signin(email: String, password: String): User
 }
 
 type Query {
