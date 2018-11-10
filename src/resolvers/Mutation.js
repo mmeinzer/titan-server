@@ -16,6 +16,7 @@ const Mutation = {
       },
       info
     );
+    //sign in
     const token = jwt.sign({ userId: newUser.id }, process.env.APP_SECRET);
     context.response.cookie("token", token, {
       httpOnly: true,
