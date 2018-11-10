@@ -1,10 +1,15 @@
 require("dotenv").config({ path: ".env" });
 const createServer = require("./createServer");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 
 const server = createServer();
-
 server.express.use(cookieParser());
+server.express.use(bodyParser.json());
+server.express.use((req, res, next) => {
+  console.log(req.body);
+  next();
+});
 
 server.start(
   {
